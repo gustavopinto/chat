@@ -8,7 +8,7 @@ public class Grupo {
 	private Mensagem[] mensagens;
 	private Participante[] participantes;
 	
-	public void additionarParticipante(Participante p) {
+	public void adicionarParticipante(Participante p) {
 		Participante[] ps = copyOf(participantes, participantes.length + 1);
 		ps[participantes.length] = p;
 		this.participantes = ps;

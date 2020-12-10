@@ -4,7 +4,7 @@ public class Moderador {
 
 	public Grupo criarGrupo(String nome){
 		Grupo g = new Grupo(nome);
-		g.additionarParticipante(this);
+		g.adicionarParticipante(this);
 		this.grupo = g;
 		return g;
 	}

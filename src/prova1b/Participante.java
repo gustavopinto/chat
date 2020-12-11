@@ -4,7 +4,12 @@ public abstract class Participante {
 
 	private String nome;
 	
-	public Participante(String nome) {
+	public Participante(String nome) throws StringVazia{
+		
+		if(nome == "") {
+			throw new StringVazia("O nome do participante não pode ser vazio");
+		}
+		
 		this.nome = nome;
 	}
 	

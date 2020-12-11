@@ -3,7 +3,6 @@ package prova1b;
 import java.util.ArrayList;
 
 public class Usuario extends Participante {
-
 	public Usuario(String nome) {
 		this.nome = nome;
 		ArrayList<Mensagem> msg = new ArrayList();

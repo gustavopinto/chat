@@ -11,23 +11,29 @@ public class Grupo {
 	private String nome;
 	private ArrayList<Mensagem> mensagens;
 	private ArrayList<Participante> participantes;
-	private String datamsg;
 	
-	public Grupo(String nome, Participante adm) {
-		this.nome = nome;
-		ArrayList<Participante> init = new ArrayList();
-		ArrayList<Mensagem> initMsg = new ArrayList();
-		this.mensagens = initMsg;
-		init.add(adm);
- 		this.participantes = init;
+	public Grupo(String nome, Participante adm) throws ObjetoNulo{
+		if(adm == null) {
+			throw new ObjetoNulo("erro ao criar grupo '" + nome + "', <Participante adm> esta nulo");
+		}else {
+			this.nome = nome;
+			ArrayList<Participante> init = new ArrayList();
+			ArrayList<Mensagem> initMsg = new ArrayList();
+			this.mensagens = initMsg;
+			init.add(adm);
+	 		this.participantes = init;
+		}		
 	}
 	
 	String getNome() {
 		return nome;
 	}
-	public void adicionarParticipante(Participante p) {
-		this.participantes.add(p);
-        
+	public void adicionarParticipante(Participante p) throws ObjetoNulo{
+		if(this.participantes == null || p == null) {
+			throw new ObjetoNulo("Não foi possível fazer adicionar participante 'p', this.participantes = null;");			
+		}else {
+			this.participantes.add(p);
+		}
 	}
 	
 	public boolean removerParticipante(Participante p) {
@@ -43,6 +49,7 @@ public class Grupo {
 	}
 	
 	public void enviarMensagem(Mensagem m) {
+		
 		this.mensagens.add(m);
 	}
 	

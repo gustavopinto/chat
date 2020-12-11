@@ -21,5 +21,32 @@ class GrupoTest {
 		Assertions.assertNotNull(g.getMensagens());
 	}
 	
+	@Test
+	void criarGrupoSemParticipantestest() {	
+		boolean success = true;
+		try {
+			Grupo g = new Grupo("Joss Labadie", null);
+		} catch(ObjetoNulo e) {
+			success = false;
+			System.out.println(e.getMessage());
+		}
+		Assertions.assertEquals(false, success);
+		
+	}
+	@Test
+	void adicionarParticipanteInexistentetest() {
+		Usuario user = null;
+		boolean success = true;
+		try {
+			Grupo g = new Grupo("Joss Labadie", new Moderador("Joao Brigatti"));
+			g.adicionarParticipante(user);
+		} catch(ObjetoNulo e) {
+			success = false;
+			System.out.println(e.getMessage());
+		}
+		Assertions.assertEquals(false, success);
+		
+	}
+	
 
 }

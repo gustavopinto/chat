@@ -12,7 +12,7 @@ public abstract class Participante {
 	
 	public abstract ArrayList<Mensagem> getMensagens();
 	
-	abstract void enviaMensagem(String texto, Grupo g) throws ObjectIsNull;
+	abstract void enviaMensagem(String texto, Grupo g);
 	
 	public String toString() {
 		return nome;

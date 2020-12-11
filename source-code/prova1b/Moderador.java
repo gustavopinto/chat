@@ -10,7 +10,12 @@ public class Moderador extends Participante implements SuperParticipante{
 	}
 	
 	public Grupo criarGrupo(String nome){
-		Grupo g = new Grupo(nome, this);		
+		Grupo g = null;
+		try {
+			g = new Grupo(nome, this);
+		} catch (ObjetoNulo e) {
+			e.printStackTrace();
+		}				
 		this.grupo = g;
 		return grupo;
 	} 
@@ -21,8 +26,16 @@ public class Moderador extends Participante implements SuperParticipante{
 	}
 
 	@Override
-	public void addicionarParticipante(Participante p) {
-		this.grupo.adicionarParticipante(p);		
+	public void addicionarParticipante(Participante p) throws ObjetoNulo {
+		if(p != null) {
+			try {
+				this.grupo.adicionarParticipante(p);
+			} catch(ObjetoNulo e) {
+				e.printStackTrace();				
+			}			
+		} else {			
+			throw new ObjetoNulo("'p' esta nulo");
+		}
 	}
 
 	@Override

@@ -4,8 +4,10 @@ public interface SuperParticipante {
 	
 	Grupo criarGrupo(String nome);
 	
-	void addicionarParticipante(Participante p);
+	void adicionarParticipante(Participante p, Grupo g);
 	
-	boolean removerParticipante(Participante p);
+	boolean removerParticipante(Participante p, Grupo g);
+
+	
 
 }

@@ -1,37 +1,44 @@
 package prova1b;
-
-import static java.util.Arrays.copyOf;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Grupo {
 
 	private String nome;
-	private Mensagem[] mensagens;
-	private Participante[] participantes;
+	private List<Mensagem>mensagens;
+	private List<Participante>participantes;
 	
-	public void additionarParticipante(Participante p) {
-		Participante[] ps = copyOf(participantes, participantes.length + 1);
-		ps[participantes.length] = p;
-		this.participantes = ps;
+	
+	public Grupo(String nome) {
+		this.nome = nome;
+		this.mensagens = new ArrayList<>();
+		this.participantes = new ArrayList<>();
+	}
+	
+	public void adicionarParticipante(Participante p) {
+		this.participantes.add(p);
 	}
 	
 	public boolean removerParticipante(Participante p) {
-		for (int i = 0; i < participantes.length; i++) {
-			if(participantes[i].equals(p)) {
-				Participante[] ps = new Participante[participantes.length -1];
-				int remainingElements = participantes.length - (i + 1);
-				System.arraycopy(participantes, 0, ps, 0, i);
-				System.arraycopy(participantes, i+ 1, ps, i, remainingElements);
-				
-				this.participantes = ps;
-				return true;
-			}
-		}
+		Boolean flag = this.participantes.remove(p);
+		if (flag)
+			return true;
 		return false;
 	}
 	
-	public void envarMensagem(Mensagem m) {
-		Mensagem[] msg = copyOf(mensagens, mensagens.length + 1);
-		msg[mensagens.length] = m;
-		this.mensagens = msg;
+	public void enviarMensagem(Mensagem m) {
+		this.mensagens.add(m);
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public List<Mensagem> getMensagens() {
+		return this.mensagens;
+	}
+	
+	public List<Mensagem> getParticipantes(){
+		return this.mensagens;
 	}
 }

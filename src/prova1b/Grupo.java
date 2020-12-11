@@ -1,37 +1,61 @@
 package prova1b;
 
-import static java.util.Arrays.copyOf;
-
+import java.util.LinkedList;
+import java.util.List;
 public class Grupo {
 
 	private String nome;
-	private Mensagem[] mensagens;
-	private Participante[] participantes;
-	
-	public void additionarParticipante(Participante p) {
-		Participante[] ps = copyOf(participantes, participantes.length + 1);
-		ps[participantes.length] = p;
-		this.participantes = ps;
-	}
-	
-	public boolean removerParticipante(Participante p) {
-		for (int i = 0; i < participantes.length; i++) {
-			if(participantes[i].equals(p)) {
-				Participante[] ps = new Participante[participantes.length -1];
-				int remainingElements = participantes.length - (i + 1);
-				System.arraycopy(participantes, 0, ps, 0, i);
-				System.arraycopy(participantes, i+ 1, ps, i, remainingElements);
-				
-				this.participantes = ps;
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public void envarMensagem(Mensagem m) {
-		Mensagem[] msg = copyOf(mensagens, mensagens.length + 1);
-		msg[mensagens.length] = m;
-		this.mensagens = msg;
-	}
+    private List<Mensagem> mensagens = new LinkedList<>();
+    private List<Participante> participantes = new LinkedList<>();
+    
+    
+    public Grupo(String nome) {
+    	
+        try {
+            if (nome.length() <= 12) {
+                this.nome = nome;
+            }
+            else {
+                throw new TamanhoExcedido("Erro: entrada maior que 12 caracteres");
+            }
+        }
+        catch (TamanhoExcedido e) {
+            System.out.println("Tamanho da entrada excedido");
+            this.nome = null;
+        }
+        
+    }
+    
+    public void additionarParticipante(Participante p) {
+        this.participantes.add(p);
+    }
+    
+    
+
+    public boolean removerParticipante(Participante p) {
+        for (int i = 0; i < participantes.size(); i++) {
+            if(this.participantes.get(i).equals(p)) {            	
+                this.participantes.remove(i);
+                return true;
+            }           
+        }
+        return false;
+    }
+   
+
+    public void enviarMensagem(Mensagem m) {
+        this.mensagens.add(m);
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public List<Participante> getParticipantes() {
+        return this.participantes;
+    }
+
+    public List<Mensagem> getMensagens() {
+        return this.mensagens;
+    }
 }

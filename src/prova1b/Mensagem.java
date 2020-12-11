@@ -12,8 +12,17 @@ public class Mensagem {
 		this.texto = texto;
 		this.horaEnviada = new Date();
 	}
-	
-	public String getMensagem() {
+
+	public String getRemetente() {
+		return remetente.getNome();
+	}
+
+	public String getTexto() {
 		return texto;
 	}
+
+	public Date getHoraEnviada() {
+		return horaEnviada;
+	}
+
 }

@@ -1,7 +1,5 @@
 package prova1b;
 
-import static java.util.Arrays.copyOf;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +15,11 @@ public class Grupo {
 		this.participantes = new ArrayList<Participante>();
 	}
 	
-	public void adicionarParticipante(Participante participante) {
+	public void adicionarAoGrupo(Participante participante) {
 		this.participantes.add(participante);
 	}
 	
-	public boolean removerParticipante(Participante participante) {
+	public boolean removerDoGrupo(Participante participante) {
 		Boolean flag = this.participantes.remove(participante);
 		
 		if (flag) return true;
@@ -29,7 +27,19 @@ public class Grupo {
 		return false;
 	}
 	
-	public void enviarMensagem(Mensagem mensagem) {
+	public void receberMensagemParticipante(Mensagem mensagem) {
 		this.mensagens.add(mensagem);
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public List<Mensagem> getMensagens() {
+		return mensagens;
+	}
+
+	public List<Participante> getParticipantes() {
+		return participantes;
 	}
 }

@@ -1,36 +1,27 @@
 package prova1b;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.util.Arrays.copyOf;
 
 public class Grupo {
 
 	private String nome;
 	private Mensagem[] mensagens;
-	private Participante[] participantes;
+	private List<Participante> participantes = new ArrayList<>();
+
 
 	public Grupo(String nome) {
 		this.nome = nome;
 	}
 
 	public void adicionarParticipantes(Participante p) {
-		Participante[] ps = copyOf(participantes, participantes.length + 1);
-		ps[participantes.length] = p;
-		this.participantes = ps;
+		participantes.add(p);
 	}
 	
 	public boolean removerParticipante(Participante p) {
-		for (int i = 0; i < participantes.length; i++) {
-			if(participantes[i].equals(p)) {
-				Participante[] ps = new Participante[participantes.length -1];
-				int remainingElements = participantes.length - (i + 1);
-				System.arraycopy(participantes, 0, ps, 0, i);
-				System.arraycopy(participantes, i+ 1, ps, i, remainingElements);
-				
-				this.participantes = ps;
-				return true;
-			}
-		}
-		return false;
+		return this.participantes.remove(p);
 	}
 	
 	public void enviarMensagem(Mensagem m) {
@@ -44,7 +35,7 @@ public class Grupo {
 	}
 
 
-	public Participante[] getParticipantes() {
+	public List<Participante> getParticipantes() {
 		return participantes;
 	}
 

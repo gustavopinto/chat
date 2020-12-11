@@ -27,6 +27,7 @@ public class Moderador extends Participante implements SuperParticipante {
 
 	@Override
 	void enviarMensagem(String texto, Grupo g) {
-
+		Mensagem msg = new Mensagem(texto);
+		g.enviarMensagem(msg);
 	}
 }

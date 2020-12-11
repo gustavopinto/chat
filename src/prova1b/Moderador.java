@@ -1,14 +1,14 @@
 package prova1b;
 
-public class Moderador extends Participante implements SuperParticipante {
-	String nome;
-	Grupo grupo;
-	
-	public Moderador(String nome) {
-		this.nome = nome;
-	}
+public class Moderador extends Participante implements SuperParticipante{
 
-	public Grupo criarGrupo(String nome){
+	Grupo grupo;
+
+	public Moderador(String nome) {
+		super(nome);		
+	}
+	
+	public Grupo criarGrupo (String nome){	
 		Grupo g = new Grupo(nome);
 		g.additionarParticipante(this);
 		this.grupo = g;
@@ -16,18 +16,24 @@ public class Moderador extends Participante implements SuperParticipante {
 	}
 
 	@Override
-	void enviaMensagem(String texto, Grupo g) {
-		Mensagem msg = new Mensagem(texto, this);
-		grupo.envarMensagem(msg);
-	}
-
-	@Override
 	public void addicionarParticipante(Participante p) {
-		grupo.additionarParticipante(p);
+		this.grupo.additionarParticipante(p);
 	}
 
 	@Override
 	public boolean removerParticipante(Participante p) {
-		return grupo.removerParticipante(p);
+		return this.grupo.removerParticipante(p);	
 	}
+
+	@Override
+	void enviaMensagem(String texto, Grupo g) {
+		Mensagem m = new Mensagem(texto);
+		g.enviarMensagem(m);		
+	}
+	
+	public Grupo getGrupo() {
+		return grupo;
+	}
+	
+
 }

@@ -4,8 +4,8 @@ public abstract class Participante {
 
 	private String nome;
 	
-	abstract void enviaMensagem(String texto, Grupo g);
-	
+	abstract void enviarMensagem(String texto, Grupo g);
+
 	public String toString() {
 		return nome;
 	}

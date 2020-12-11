@@ -1,37 +1,63 @@
 package prova1b;
 
-import static java.util.Arrays.copyOf;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Grupo {
 
 	private String nome;
-	private Mensagem[] mensagens;
-	private Participante[] participantes;
 	
-	public void additionarParticipante(Participante p) {
-		Participante[] ps = copyOf(participantes, participantes.length + 1);
-		ps[participantes.length] = p;
-		this.participantes = ps;
-	}
+	private List<Mensagem> mensagens;
+	private List<Participante> participantes;
 	
-	public boolean removerParticipante(Participante p) {
-		for (int i = 0; i < participantes.length; i++) {
-			if(participantes[i].equals(p)) {
-				Participante[] ps = new Participante[participantes.length -1];
-				int remainingElements = participantes.length - (i + 1);
-				System.arraycopy(participantes, 0, ps, 0, i);
-				System.arraycopy(participantes, i+ 1, ps, i, remainingElements);
-				
-				this.participantes = ps;
-				return true;
-			}
+	public Grupo(String nome) throws StringVazia{
+		
+		if(nome == "") {
+			throw new StringVazia("O nome do grupo não pode ser vazio");
 		}
-		return false;
+		
+		this.nome = nome;
+		this.mensagens = new ArrayList<>();
+		this.participantes = new ArrayList<>();
 	}
 	
-	public void envarMensagem(Mensagem m) {
-		Mensagem[] msg = copyOf(mensagens, mensagens.length + 1);
-		msg[mensagens.length] = m;
-		this.mensagens = msg;
+	public void adicionarParticipante(Participante p) throws ParticipanteRepetido{
+		if(this.participantes.indexOf(p) != -1) {
+			throw new ParticipanteRepetido("O participante já está no grupo");
+		}
+		
+		this.participantes.add(p);
+	}
+	
+	public boolean removerParticipante(Participante p) throws ParticipanteInexistente{
+		
+		if(this.participantes.indexOf(p) == -1) {
+			throw new ParticipanteInexistente("Não existe esse participante no grupo");
+		}
+		
+		boolean participanteExiste = participantes.remove(p);
+		
+		return participanteExiste;
+	}
+	
+	public void enviarMensagem(Mensagem m, String tipoParticipante) throws StringVazia{
+		
+		if(m.getMensagem() == "" && tipoParticipante.equals("Usuario") || 
+			m.getMensagem() == "Moderador: " && tipoParticipante.equals("Moderador")) {
+			throw new StringVazia("A mensagem não pode ser vazia");
+		}
+		
+		this.mensagens.add(m);
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	public List<Participante> getParticipantes() {
+		return this.participantes;
+	}
+	
+	public List<Mensagem> getMensagens() {
+		return this.mensagens;
 	}
 }

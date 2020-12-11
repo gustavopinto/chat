@@ -10,13 +10,15 @@ public class ModeradorTest {
 	@Test
 	public void novoGrupoComUmParticipanteTest() {
 		Moderador gustavo = new Moderador("Gustavo");
+		
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
+		
 		Assertions.assertEquals(1, turmaOO2.getParticipantes().size());
 		
 		Assertions.assertEquals("Gustavo", turmaOO2.getParticipantes().get(0).getNome());
 	}
 	@Test
-	public void criarGrupoTest() {
+	public void criarGrupoTest() { 
 		Moderador gustavo = new Moderador("Gustavo");
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
 		Assertions.assertNotNull(turmaOO2);
@@ -132,7 +134,7 @@ public class ModeradorTest {
 		
 		Mensagem ultima = turmaOO2.getMensagens().get(turmaOO2.getMensagens().size()-1);
 		
-		Assertions.assertEquals("Estudaram?", ultima.getMensagem());
+		Assertions.assertEquals("Estudaram?", ultima.getShortMensagem());
 	}
 
 }

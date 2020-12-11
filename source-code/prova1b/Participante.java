@@ -1,13 +1,18 @@
 package prova1b;
 
-public abstract class Participante {
+import java.util.ArrayList;
 
+public abstract class Participante {
+	protected ArrayList<Mensagem> mensagens;
 	protected String nome;
 	
 	public String getNome() {
-		return nome;
+		return nome; 
 	}
-	abstract void enviaMensagem(String texto, Grupo g);
+	
+	public abstract ArrayList<Mensagem> getMensagens();
+	
+	abstract void enviaMensagem(String texto, Grupo g) throws ObjectIsNull;
 	
 	public String toString() {
 		return nome;

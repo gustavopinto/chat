@@ -45,13 +45,7 @@ public class Grupo {
 	public void enviarMensagem(Mensagem m) {
 		this.mensagens.add(m);
 	}
-	public String getHora() {
-		Date date = new Date();
-        String dataAtual = DateFormat.getDateInstance(DateFormat.MEDIUM).format(date);
-		this.datamsg = dataAtual;
-		return dataAtual;
-	}
-
+	
 	public ArrayList<Participante> getParticipantes() {
         return participantes;
 	}

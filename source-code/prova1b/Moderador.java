@@ -34,4 +34,9 @@ public class Moderador extends Participante implements SuperParticipante{
 		}		
 		return resp;
 	}
+
+	@Override
+	public ArrayList<Mensagem> getMensagens() {
+		return mensagens;
+	}
 }

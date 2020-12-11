@@ -9,4 +9,8 @@ public abstract class Participante {
 	public String toString() {
 		return nome;
 	}
+
+	public String getNome() {
+		return nome;
+	}
 }

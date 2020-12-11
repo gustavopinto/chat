@@ -4,7 +4,7 @@ public class Usuario extends Participante {
     private String nome;
 
     public Usuario(String nome) {
-        this.nome = nome;
+        super(nome);
     }
 
     @Override

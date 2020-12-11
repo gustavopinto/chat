@@ -5,7 +5,7 @@ public class Moderador extends Participante implements SuperParticipante {
 	private Grupo grupo;
 
 	public Moderador(String nome) {
-		this.nome = nome;
+		super(nome);
 	}
 
 	public Grupo criarGrupo(String nome){

@@ -4,9 +4,14 @@ public abstract class Participante {
 
 	private String nome;
 	
-	abstract void enviaMensagem(String texto, Grupo g);
+	public Participante(String nome) {
+		this.nome = nome;
+	}
 	
-	public String toString() {
+	abstract void enviarMensagem(String texto, Grupo g);
+	
+	public String getNome() {
 		return nome;
 	}
+		
 }

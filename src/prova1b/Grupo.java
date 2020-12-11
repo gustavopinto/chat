@@ -7,8 +7,12 @@ public class Grupo {
 	private String nome;
 	private Mensagem[] mensagens;
 	private Participante[] participantes;
-	
-	public void additionarParticipante(Participante p) {
+
+	public Grupo(String nome) {
+		this.nome = nome;
+	}
+
+	public void adicionarParticipantes(Participante p) {
 		Participante[] ps = copyOf(participantes, participantes.length + 1);
 		ps[participantes.length] = p;
 		this.participantes = ps;
@@ -29,9 +33,18 @@ public class Grupo {
 		return false;
 	}
 	
-	public void envarMensagem(Mensagem m) {
+	public void enviarMensagem(Mensagem m) {
 		Mensagem[] msg = copyOf(mensagens, mensagens.length + 1);
 		msg[mensagens.length] = m;
 		this.mensagens = msg;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public Participante[] getParticipantes() {
+		return participantes;
 	}
 }

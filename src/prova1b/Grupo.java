@@ -2,36 +2,48 @@ package prova1b;
 
 import static java.util.Arrays.copyOf;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Grupo {
 
 	private String nome;
-	private Mensagem[] mensagens;
-	private Participante[] participantes;
 	
-	public void additionarParticipante(Participante p) {
-		Participante[] ps = copyOf(participantes, participantes.length + 1);
-		ps[participantes.length] = p;
-		this.participantes = ps;
+	private List<Mensagem> mensagens;
+	private List<Participante> participantes;
+	
+	public Grupo(String nome) {
+		this.nome = nome;
+		this.mensagens = new ArrayList<>();
+		this.participantes = new ArrayList<>();
+	}
+	
+	public void addicionarParticipante(Participante p) {
+		// exceção participante repetido
+		this.participantes.add(p);
+		
 	}
 	
 	public boolean removerParticipante(Participante p) {
-		for (int i = 0; i < participantes.length; i++) {
-			if(participantes[i].equals(p)) {
-				Participante[] ps = new Participante[participantes.length -1];
-				int remainingElements = participantes.length - (i + 1);
-				System.arraycopy(participantes, 0, ps, 0, i);
-				System.arraycopy(participantes, i+ 1, ps, i, remainingElements);
-				
-				this.participantes = ps;
-				return true;
-			}
-		}
-		return false;
+		// exceção participante inexistente
+		boolean participanteExiste = participantes.remove(p);
+		
+		return participanteExiste;
 	}
 	
-	public void envarMensagem(Mensagem m) {
-		Mensagem[] msg = copyOf(mensagens, mensagens.length + 1);
-		msg[mensagens.length] = m;
-		this.mensagens = msg;
+	public void enviarMensagem(Mensagem m) {
+		//exceção mensagem nula
+		this.mensagens.add(m);
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	public List getParticipantes() {
+		return this.participantes;
+	}
+	
+	public List getMensagens() {
+		return this.mensagens;
 	}
 }

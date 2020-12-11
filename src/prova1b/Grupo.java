@@ -47,4 +47,8 @@ public class Grupo {
 	public Participante[] getParticipantes() {
 		return participantes;
 	}
+
+	public Mensagem[] getMensagens() {
+		return mensagens;
+	}
 }

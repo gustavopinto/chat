@@ -13,9 +13,11 @@ public class Main {
 		// Adicionando participantes ao grupo
 		gustavo.adicionarParticipante(leonardo, grupo);
 		gustavo.adicionarParticipante(david, grupo);
+		System.out.println(grupo.getParticipantes());
 		
 		// Removendo participantes do grupo
 		gustavo.removerParticipante(leonardo, grupo);
+		System.out.println(grupo.getParticipantes());
 
 		// Enviando mensagens
 		// Moderador
@@ -23,8 +25,6 @@ public class Main {
 		
 		// Participante
 		david.enviarMensagem("Teste David", grupo);
-		
-		
-		// System.out.println(grupo.getParticipantes());
+		System.out.println(grupo.getMensagens());
 	}
 }

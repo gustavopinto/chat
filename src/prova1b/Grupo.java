@@ -35,11 +35,23 @@ public class Grupo {
 		return nome;
 	}
 
-	public List<Mensagem> getMensagens() {
-		return mensagens;
+	public String getMensagens() {
+		String mensagensDoGrupo = "MENSAGENS DO GRUPO \n";
+		
+		for(Mensagem mensagem : this.mensagens) {
+			mensagensDoGrupo += mensagem.getRemetente() + "(Envio: "+ mensagem.getHoraEnviada() + "): " + mensagem.getTexto() + "\n";
+		}
+		
+		return mensagensDoGrupo;
 	}
 
-	public List<Participante> getParticipantes() {
-		return participantes;
+	public String getParticipantes() {
+		String mensagem = "PARTICIPANTES DO GRUPO \n";
+		
+		for (Participante participante : this.participantes) {
+			mensagem += participante.getNome() + "\n";
+		}
+		
+		return mensagem;
 	}
 }

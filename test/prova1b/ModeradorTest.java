@@ -1,33 +1,33 @@
 package prova1b;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ModeradorTest {
 
 	@Test
-	public void criarGrupoTest() {
+	public void novoGrupoComUmParticipanteTest() { 
+		Moderador gustavo = new Moderador("Gustavo");
+		
+		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");		
+		Assertions.assertEquals(1, turmaOO2.getParticipantes().size());		
+		Assertions.assertEquals("Gustavo", turmaOO2.getParticipantes().get(0).getNome());
+	}
+	@Test
+	public void criarGrupoTest() { 
 		Moderador gustavo = new Moderador("Gustavo");
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
-		Assert.assertNotNull(turmaOO2);
+		Assertions.assertNotNull(turmaOO2);
 	}
 
 	@Test
 	public void criarGrupoComNomeTest() {
-		Moderador gustavo = new Moderador("Gustavo");
+		Moderador gustavo = new Moderador("Gustavo"); 
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
-		Assert.assertEquals("Turma OO2", turmaOO2.getNome());
+		Assertions.assertEquals("Turma OO2", turmaOO2.getNome());
 	}
-
-	@Test
-	public void novoGrupoComUmParticipanteTest() {
-		Moderador gustavo = new Moderador("Gustavo");
-		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
-		Assert.assertEquals(1, turmaOO2.getParticipantes().length);
-		
-		Assert.assertEquals("Gustavo", turmaOO2.getParticipantes()[0].getNome());
-	}
-	
 	
 	@Test
 	public void adicionarParticipanteTest() {
@@ -35,9 +35,14 @@ public class ModeradorTest {
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
 		
 		Usuario fulano = new Usuario("Fulano");
-		gustavo.addicionarParticipante(fulano);
+		try {
+			gustavo.addicionarParticipante(fulano);
+		} catch (ObjetoNulo e) {
+			e.printStackTrace();
+			System.out.print(e.getMessage());
+		}
 		
-		Assert.assertEquals(2, turmaOO2.getParticipantes().length);
+		Assertions.assertEquals(2, turmaOO2.getParticipantes().size());
 	}
 	
 	@Test
@@ -46,15 +51,18 @@ public class ModeradorTest {
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
 		
 		Usuario fulano = new Usuario("Fulano");
-		gustavo.addicionarParticipante(fulano);
-		
 		Usuario beltrano = new Usuario("Beltrano");
-		gustavo.addicionarParticipante(beltrano);
-		
 		Usuario ciclano = new Usuario("Ciclano");
-		gustavo.addicionarParticipante(ciclano);
-		
-		Assert.assertEquals(4, turmaOO2.getParticipantes().length);
+		try {
+			gustavo.addicionarParticipante(fulano);
+			gustavo.addicionarParticipante(beltrano);			
+			gustavo.addicionarParticipante(ciclano);
+		} catch (ObjetoNulo e) {
+			e.printStackTrace();
+			System.out.print(e.getMessage());
+		}
+
+		Assertions.assertEquals(4, turmaOO2.getParticipantes().size());
 	}
 	
 	@Test
@@ -63,10 +71,16 @@ public class ModeradorTest {
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
 		
 		Usuario fulano = new Usuario("Fulano");
-		gustavo.addicionarParticipante(fulano);
+		try {
+			gustavo.addicionarParticipante(fulano);
+			gustavo.removerParticipante(fulano);
+		} catch (ObjetoNulo e) {
+			System.out.print(e.getMessage());
+			e.printStackTrace();
+		}
+
 		
-		gustavo.removerParticipante(fulano);
-		Assert.assertEquals(1, turmaOO2.getParticipantes().length);
+		Assertions.assertEquals(1, turmaOO2.getParticipantes().size());
 	}
 	
 	@Test
@@ -75,10 +89,15 @@ public class ModeradorTest {
 		gustavo.criarGrupo("Turma OO2");
 		
 		Usuario fulano = new Usuario("Fulano");
-		gustavo.addicionarParticipante(fulano);
+		try {
+			gustavo.addicionarParticipante(fulano);
+		} catch (ObjetoNulo e) {
+			System.out.print(e.getMessage());
+			e.printStackTrace();
+		}
 		
 		boolean confirmacao = gustavo.removerParticipante(fulano);
-		Assert.assertEquals(true, confirmacao);
+		Assertions.assertEquals(true, confirmacao);
 	}
 	
 	
@@ -88,15 +107,16 @@ public class ModeradorTest {
 		gustavo.criarGrupo("Turma OO2");
 		
 		boolean confirmacao = gustavo.removerParticipante(new Usuario("Fulano"));
-		Assert.assertEquals(false, confirmacao);
+		Assertions.assertEquals(false, confirmacao);
 	}
+
 	
 	@Test
 	public void grupoSemMensagemTest() {
 		Moderador gustavo = new Moderador("Gustavo");
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
 		
-		Assert.assertEquals(0, turmaOO2.getMensagens().length);
+		Assertions.assertEquals(0, turmaOO2.getMensagens().size());
 	}
 	
 	@Test
@@ -105,7 +125,7 @@ public class ModeradorTest {
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
 		gustavo.enviaMensagem("Oi pessoal", turmaOO2);
 		
-		Assert.assertEquals(1, turmaOO2.getMensagens().length);
+		Assertions.assertEquals(1, turmaOO2.getMensagens().size());
 	}
 	
 	@Test
@@ -117,7 +137,7 @@ public class ModeradorTest {
 		gustavo.enviaMensagem("Como está a prova?", turmaOO2);
 		gustavo.enviaMensagem("Estudaram?", turmaOO2);
 		
-		Assert.assertEquals(4, turmaOO2.getMensagens().length);
+		Assertions.assertEquals(4, turmaOO2.getMensagens().size());
 	}
 	
 	@Test
@@ -129,9 +149,9 @@ public class ModeradorTest {
 		gustavo.enviaMensagem("Como está a prova?", turmaOO2);
 		gustavo.enviaMensagem("Estudaram?", turmaOO2);
 		
-		Mensagem ultima = turmaOO2.getMensagens()[turmaOO2.getMensagens().length-1];
+		Mensagem ultima = turmaOO2.getMensagens().get(turmaOO2.getMensagens().size()-1);
 		
-		Assert.assertEquals("Estudaram?", ultima.getMensagem());
+		Assertions.assertEquals("Estudaram?", ultima.getShortMensagem());
 	}
 
 }

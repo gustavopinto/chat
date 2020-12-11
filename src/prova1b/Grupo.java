@@ -2,11 +2,17 @@ package prova1b;
 
 import static java.util.Arrays.copyOf;
 
+import java.util.List;
+
 public class Grupo {
 
 	private String nome;
-	private Mensagem[] mensagens;
+	private List<Mensagem> mensagens;
 	private Participante[] participantes;
+	
+	public Grupo(String nome) {
+		this.nome = nome;
+	}
 	
 	public void additionarParticipante(Participante p) {
 		Participante[] ps = copyOf(participantes, participantes.length + 1);
@@ -30,8 +36,18 @@ public class Grupo {
 	}
 	
 	public void envarMensagem(Mensagem m) {
-		Mensagem[] msg = copyOf(mensagens, mensagens.length + 1);
-		msg[mensagens.length] = m;
-		this.mensagens = msg;
+		this.mensagens.add(m);
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public Participante[] getParticipantes() {
+		return this.participantes;
+	}
+	
+	public List<Mensagem> getMensagens() {
+		return this.mensagens;
 	}
 }

@@ -1,7 +1,8 @@
 package prova1b;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ModeradorTest {
 
@@ -9,23 +10,23 @@ public class ModeradorTest {
 	public void criarGrupoTest() {
 		Moderador gustavo = new Moderador("Gustavo");
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
-		Assert.assertNotNull(turmaOO2);
+		assertNotNull(turmaOO2);
 	}
 
 	@Test
 	public void criarGrupoComNomeTest() {
 		Moderador gustavo = new Moderador("Gustavo");
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
-		Assert.assertEquals("Turma OO2", turmaOO2.getNome());
+		assertEquals("Turma OO2", turmaOO2.getNome());
 	}
 
 	@Test
 	public void novoGrupoComUmParticipanteTest() {
 		Moderador gustavo = new Moderador("Gustavo");
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
-		Assert.assertEquals(1, turmaOO2.getParticipantes().length);
-		
-		Assert.assertEquals("Gustavo", turmaOO2.getParticipantes()[0].getNome());
+		assertEquals(1, turmaOO2.getParticipantes().size());
+
+		assertEquals("Gustavo", turmaOO2.getParticipantes().get(0).getNome());
 	}
 	
 	
@@ -35,9 +36,9 @@ public class ModeradorTest {
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
 		
 		Usuario fulano = new Usuario("Fulano");
-		gustavo.addicionarParticipante(fulano);
+		gustavo.adicionarParticipante(fulano);
 		
-		Assert.assertEquals(2, turmaOO2.getParticipantes().length);
+		assertEquals(2, turmaOO2.getParticipantes().size());
 	}
 	
 	@Test
@@ -46,15 +47,15 @@ public class ModeradorTest {
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
 		
 		Usuario fulano = new Usuario("Fulano");
-		gustavo.addicionarParticipante(fulano);
+		gustavo.adicionarParticipante(fulano);
 		
 		Usuario beltrano = new Usuario("Beltrano");
-		gustavo.addicionarParticipante(beltrano);
+		gustavo.adicionarParticipante(beltrano);
 		
 		Usuario ciclano = new Usuario("Ciclano");
-		gustavo.addicionarParticipante(ciclano);
+		gustavo.adicionarParticipante(ciclano);
 		
-		Assert.assertEquals(4, turmaOO2.getParticipantes().length);
+		assertEquals(4, turmaOO2.getParticipantes().size());
 	}
 	
 	@Test
@@ -63,10 +64,10 @@ public class ModeradorTest {
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
 		
 		Usuario fulano = new Usuario("Fulano");
-		gustavo.addicionarParticipante(fulano);
+		gustavo.adicionarParticipante(fulano);
 		
 		gustavo.removerParticipante(fulano);
-		Assert.assertEquals(1, turmaOO2.getParticipantes().length);
+		assertEquals(1, turmaOO2.getParticipantes().size());
 	}
 	
 	@Test
@@ -75,10 +76,10 @@ public class ModeradorTest {
 		gustavo.criarGrupo("Turma OO2");
 		
 		Usuario fulano = new Usuario("Fulano");
-		gustavo.addicionarParticipante(fulano);
+		gustavo.adicionarParticipante(fulano);
 		
 		boolean confirmacao = gustavo.removerParticipante(fulano);
-		Assert.assertEquals(true, confirmacao);
+		assertTrue(confirmacao);
 	}
 	
 	
@@ -88,7 +89,7 @@ public class ModeradorTest {
 		gustavo.criarGrupo("Turma OO2");
 		
 		boolean confirmacao = gustavo.removerParticipante(new Usuario("Fulano"));
-		Assert.assertEquals(false, confirmacao);
+		assertFalse(confirmacao);
 	}
 	
 	@Test
@@ -96,42 +97,43 @@ public class ModeradorTest {
 		Moderador gustavo = new Moderador("Gustavo");
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
 		
-		Assert.assertEquals(0, turmaOO2.getMensagens().length);
+		assertEquals(0, turmaOO2.getMensagens().size());
 	}
 	
 	@Test
 	public void enviarMensagemTest() {
 		Moderador gustavo = new Moderador("Gustavo");
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
-		gustavo.enviaMensagem("Oi pessoal", turmaOO2);
+		gustavo.enviarMensagem("Oi pessoal", turmaOO2);
 		
-		Assert.assertEquals(1, turmaOO2.getMensagens().length);
+		assertEquals(1, turmaOO2.getMensagens().size());
 	}
 	
 	@Test
 	public void enviarVariasMensagensTest() {
 		Moderador gustavo = new Moderador("Gustavo");
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
-		gustavo.enviaMensagem("Oi pessoal", turmaOO2);
-		gustavo.enviaMensagem("Tudo bem?", turmaOO2);
-		gustavo.enviaMensagem("Como está a prova?", turmaOO2);
-		gustavo.enviaMensagem("Estudaram?", turmaOO2);
+		gustavo.enviarMensagem("Oi pessoal", turmaOO2);
+		gustavo.enviarMensagem("Tudo bem?", turmaOO2);
+		gustavo.enviarMensagem("Como está a prova?", turmaOO2);
+		gustavo.enviarMensagem("Estudaram?", turmaOO2);
 		
-		Assert.assertEquals(4, turmaOO2.getMensagens().length);
+		assertEquals(4, turmaOO2.getMensagens().size());
 	}
 	
 	@Test
 	public void lerUltimaMensagemTest() {
 		Moderador gustavo = new Moderador("Gustavo");
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
-		gustavo.enviaMensagem("Oi pessoal", turmaOO2);
-		gustavo.enviaMensagem("Tudo bem?", turmaOO2);
-		gustavo.enviaMensagem("Como está a prova?", turmaOO2);
-		gustavo.enviaMensagem("Estudaram?", turmaOO2);
+		gustavo.enviarMensagem("Oi pessoal", turmaOO2);
+		gustavo.enviarMensagem("Tudo bem?", turmaOO2);
+		gustavo.enviarMensagem("Como está a prova?", turmaOO2);
+		gustavo.enviarMensagem("Estudaram?", turmaOO2);
 		
-		Mensagem ultima = turmaOO2.getMensagens()[turmaOO2.getMensagens().length-1];
+		Mensagem ultima = turmaOO2.getMensagens().get(turmaOO2.getMensagens().size()-1);
+
 		
-		Assert.assertEquals("Estudaram?", ultima.getMensagem());
+		assertEquals("Estudaram?", ultima.getMensagem());
 	}
 
 }

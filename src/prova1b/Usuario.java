@@ -1,5 +1,5 @@
 package prova1b;
 
-public class Usuario {
+public class Usuario extends Participante {
 
 }

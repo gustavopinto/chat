@@ -3,12 +3,11 @@ package prova1b;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Arrays.copyOf;
-
 public class Grupo {
 
 	private String nome;
-	private Mensagem[] mensagens;
+	private List<Mensagem> mensagens = new ArrayList<>();
+	// private Mensagem[] mensagens;
 	private List<Participante> participantes = new ArrayList<>();
 
 
@@ -24,10 +23,8 @@ public class Grupo {
 		return this.participantes.remove(p);
 	}
 	
-	public void enviarMensagem(Mensagem m) {
-		Mensagem[] msg = copyOf(mensagens, mensagens.length + 1);
-		msg[mensagens.length] = m;
-		this.mensagens = msg;
+	public void enviarMensagem(Mensagem msg) {
+		this.mensagens.add(msg);
 	}
 
 	public String getNome() {
@@ -39,7 +36,7 @@ public class Grupo {
 		return participantes;
 	}
 
-	public Mensagem[] getMensagens() {
+	public List<Mensagem> getMensagens() {
 		return mensagens;
 	}
 }

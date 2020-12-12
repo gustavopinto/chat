@@ -6,6 +6,6 @@ public interface SuperParticipante {
 	
 	void adicionarParticipante(Participante participando, Grupo grupo);
 	
-	void removerParticipante(Participante participante, Grupo grupo);
+	boolean removerParticipante(Participante participante, Grupo grupo);
 
 }

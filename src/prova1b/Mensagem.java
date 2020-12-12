@@ -15,7 +15,6 @@ public class Mensagem {
 		return dateFormat.format(date); 
 	}
 		
-	
 	public Mensagem (Participante remetente, String texto){
 		this.remetente = remetente;
 		this.texto = texto;

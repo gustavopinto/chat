@@ -22,17 +22,21 @@ public class Moderador extends Participante implements SuperParticipante {
 	@Override
 	public void adicionarParticipante(Participante participante, Grupo grupo) {
 		grupo.adicionarAoGrupo(participante);
-		
 	}
 
 	@Override
-	public void removerParticipante(Participante participante, Grupo grupo) {
+	public boolean removerParticipante(Participante participante, Grupo grupo) {
+		boolean response;
 		try {
-			grupo.removerDoGrupo(participante);
+			response = grupo.removerDoGrupo(participante);
+			
 		} catch (Exception error) {
+			response = false;
 			System.out.println("Não foi possível remover participante " + participante.getNome() + " do grupo");
 			System.out.println("Erro ocorrido: " + error);
 		}
+		
+		return response;
 	}
 
 }

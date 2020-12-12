@@ -21,9 +21,8 @@ class UsuarioTest {
 		Grupo turmaOO2 = gustavo.criarGrupo("Turma OO2");
 		gustavo.enviarMensagem("Oi pessoal", turmaOO2);
 		
-		
 		Assert.assertEquals("MENSAGENS DO GRUPO \n" + 
-				"Gustavo(Envio: " + getDateTime() + "): Oi pessoal" ,turmaOO2.getMensagens());
+				"Gustavo(Envio: " + getDateTime() + "): Oi pessoal\n" ,turmaOO2.getMensagens());
 	}
 	
 }
